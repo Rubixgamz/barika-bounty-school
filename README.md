@@ -34,8 +34,8 @@ Register each callback URL with its provider. For a live deployment, use the mat
 
 The ASP.NET Core app serves both the website and API from one origin, so login, registration, challenges, proposals, and administration work together without a separate frontend host.
 
-1. Create a public GitHub repository named `barika-bounty-school` and push this project.
-2. In Render, create a Blueprint from that repository and apply `render.yaml`. It builds the included `Dockerfile`, serves the full app, and attaches a persistent disk for application records.
+1. In Render, create a Blueprint and connect the public `Rubixgamz/barika-bounty-school` repository.
+2. Apply `render.yaml`. Render builds the included `Dockerfile`, serves the complete app, and attaches a persistent disk for application records.
 3. If starting with an empty data disk, set `BARIKA_ADMIN_EMAIL` and a strong `BARIKA_ADMIN_PASSWORD` (at least 12 characters) when prompted. Production creates this administrator on first startup and does not create local demonstration accounts. If you securely migrate an existing `barika-data.json` to the persistent disk before startup, that existing account data and password hashes are loaded unchanged.
 4. Wait for the Render deployment to finish, then open the service URL. Confirm `/health` returns `{"status":"ok"}` and test registration, sign-in, challenge browsing, and proposal submission.
 
