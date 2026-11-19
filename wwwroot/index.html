@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find community challenges and share ideas for real-world solutions.">
+    <title>Barika Bounty | Innovation Challenges</title>
+    <link rel="stylesheet" href="css/styles.css?v=10">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Barika Bounty home"><span class="brand-mark" aria-hidden="true">B</span><span>Barika Bounty</span></a>
+        <nav class="main-nav" aria-label="Main navigation"><a href="#challenges">Open challenges</a><a href="/register.html">Create an account</a></nav>
+        <div class="account-actions"><a class="button button-secondary" href="/register.html">Register</a><button id="openLogin" class="button button-primary" type="button">Sign in</button></div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="kicker">From a real problem to a real solution</p>
+                <h1>Good ideas deserve a clear path forward.</h1>
+                <p class="hero-text">Explore community challenges and share an idea. Sign in to open the private workspace for your role.</p>
+                <div class="hero-actions"><a class="button button-primary" href="#challenges">Explore challenges</a><button id="heroLogin" class="button button-secondary" type="button">Sign in to your portal</button></div>
+            </div>
+            <aside class="hero-note" aria-label="Platform purpose"><span class="note-icon" aria-hidden="true">01</span><p>Separate workspaces for members, organizations, and administrators.</p></aside>
+        </section>
+        <section id="challenges" class="section section-challenges">
+            <div class="section-intro"><p class="kicker">Open opportunities</p><h2>Find a challenge worth solving.</h2><p>Browse active challenges available to the community.</p></div>
+            <div class="filter-bar">
+                <label class="search-field" for="problemSearch"><span class="sr-only">Search challenges</span><input id="problemSearch" type="search" placeholder="Search challenges"></label>
+                <select id="categoryFilter" aria-label="Filter by category"></select>
+            </div>
+            <div id="problems" class="challenge-grid" aria-live="polite"></div>
+            <p id="problemEmpty" class="empty-state" hidden>No open challenges match those filters.</p>
+            <p id="pageError" class="form-message" role="alert"></p>
+        </section>
+    </main>
+    <footer class="site-footer"><span>Barika Bounty</span><span>Challenge to implementation, together.</span></footer>
+    <dialog id="loginDialog" class="login-dialog">
+        <form id="loginForm" class="login-card">
+            <button id="closeLogin" class="close-button" type="button" aria-label="Close sign in">x</button>
+            <p class="kicker">Welcome back</p><h2>Sign in to your portal.</h2>
+            <p>Use the account details provided by your administrator. You’ll go directly to your role’s workspace.</p>
+            <label>Email<input id="email" type="email" autocomplete="username" required></label>
+            <label>Password<input id="password" type="password" autocomplete="current-password" required></label>
+            <p id="loginError" class="form-message" role="alert"></p>
+            <button class="button button-primary" type="submit">Sign in</button>
+            <div class="social-auth">
+                <p class="auth-divider">Or sign in with</p>
+                <div class="social-actions">
+                    <button class="button button-secondary" type="button" data-provider="google">Google</button>
+                    <button class="button button-secondary" type="button" data-provider="linkedin">LinkedIn</button>
+                    <button class="button button-secondary" type="button" data-provider="github">GitHub</button>
+                </div>
+                <p class="provider-note" data-provider-note>Social sign-in is unavailable until configured by the site administrator.</p>
+            </div>
+            <p class="auth-switch">New here? <a href="/register.html">Create an account</a></p>
+        </form>
+    </dialog>
+    <script src="js/app.js?v=11"></script>
+</body>
+</html>

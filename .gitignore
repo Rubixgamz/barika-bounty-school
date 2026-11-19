@@ -1,0 +1,12 @@
+bin/
+obj/
+App_Data/
+.dotnet/
+.templateengine/
+.vs/
+*.user
+appsettings.Development.json
+.env
+.env.*
+*.docx
+secrets.json

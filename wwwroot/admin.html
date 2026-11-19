@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal | Barika Bounty</title>
+    <link rel="stylesheet" href="css/styles.css?v=10">
+</head>
+<body data-portal="Admin" class="admin-dashboard">
+    <div class="admin-shell">
+        <aside class="admin-sidebar">
+            <a class="brand" href="/admin.html"><span class="brand-mark" aria-hidden="true">B</span><span>Barika Bounty<small>Admin workspace</small></span></a>
+            <p class="admin-nav-label">Workspace</p>
+            <nav class="admin-nav" aria-label="Admin navigation">
+                <a href="#overview" aria-current="page"><span class="admin-nav-icon" aria-hidden="true">01</span>Overview</a>
+                <a href="#proposals"><span class="admin-nav-icon" aria-hidden="true">02</span>Proposals</a>
+                <a href="#directorySection"><span class="admin-nav-icon" aria-hidden="true">03</span>Directory</a>
+                <a href="#categorySuggestions"><span class="admin-nav-icon" aria-hidden="true">04</span>Categories</a>
+                <a href="#challenges"><span class="admin-nav-icon" aria-hidden="true">05</span>Challenges</a>
+            </nav>
+            <div class="admin-sidebar-note"><span class="tag">Platform admin</span><p>Keep good ideas moving from challenge to impact.</p></div>
+        </aside>
+        <div class="admin-main">
+            <header class="admin-topbar">
+                <div><p class="kicker">Platform management</p><span class="admin-topbar-title">Administration</span></div>
+                <div class="admin-topbar-actions"><span id="portalUser" class="admin-user-label"></span><button id="signOut" class="button button-secondary" type="button">Sign out</button></div>
+            </header>
+            <main class="portal-main admin-content">
+        <section id="overview" class="portal-welcome"><p class="kicker">Administrator workspace</p><h1>Platform overview</h1><p>Manage members, organizations, challenges, and proposals from your admin portal.</p></section>
+        <section id="metricsSection" class="stats-strip portal-stats" aria-label="Platform totals"><div id="metrics" class="metrics"></div></section>
+        <section id="proposals" class="section proposals-section">
+            <div class="section-intro"><p class="kicker">Latest submissions</p><h2>All proposals</h2><p>Review proposals submitted to every organization’s challenges and see each idea’s work area.</p></div>
+            <div class="filter-bar portal-filters"><input id="proposalSearch" type="search" placeholder="Search proposals" aria-label="Search proposals"><select id="proposalStatus" aria-label="Filter proposals"><option value="">All statuses</option><option value="Submitted">Submitted</option><option value="Shortlisted">Shortlisted</option><option value="Rejected">Rejected</option><option value="Approved">Approved</option><option value="Implemented">Implemented</option></select></div>
+            <div id="proposalsList" class="proposal-list" aria-live="polite"></div>
+        </section>
+        <section id="directorySection" class="section directory-section">
+            <div class="section-intro"><p class="kicker">Administration</p><h2>Members and organizations</h2><p>These directory records are visible to administrators only.</p></div>
+            <div class="directory-grid">
+                <article class="directory-card"><h3>Members</h3><div class="table-scroll"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Organization</th><th>Status</th><th>Actions</th></tr></thead><tbody id="directoryUsers"></tbody></table></div>
+                    <form id="userForm" class="admin-inline-form"><h4>Add member</h4><div class="field-row"><label>Name<input name="fullName" required></label><label>Email<input name="email" type="email" required></label></div><div class="field-row"><label>Temporary password<input name="password" type="password" minlength="8" required></label><label>Role<select name="role" id="userRole"><option value="Innovator">User</option><option value="OrganizationOwner">Organization</option><option value="Evaluator">Evaluator</option><option value="Admin">Administrator</option></select></label></div><label>Organization<select name="organizationId" id="userOrganization"><option value="">No organization</option></select></label><button class="button button-primary" type="submit">Add member</button></form>
+                </article>
+                <article class="directory-card"><h3>Organizations</h3><div class="table-scroll"><table><thead><tr><th>Name</th><th>Sector</th><th>Location</th><th>Actions</th></tr></thead><tbody id="directoryOrganizations"></tbody></table></div>
+                    <form id="organizationForm" class="admin-inline-form"><h4>Add organization</h4><label>Name<input name="name" required></label><div class="field-row"><label>Sector<input name="sector" required></label><label>Location<input name="location" required></label></div><button class="button button-primary" type="submit">Add organization</button></form>
+                </article>
+            </div>
+        </section>
+        <section id="categorySuggestions" class="section proposals-section">
+            <div class="section-intro"><p class="kicker">Community input</p><h2>Category suggestions</h2><p>Approve relevant suggestions to make them available across challenge forms and filters.</p></div>
+            <div id="categorySuggestionsList" class="category-suggestion-list" aria-live="polite"></div>
+        </section>
+        <section id="challenges" class="section section-challenges portal-section">
+            <div class="section-intro"><p class="kicker">Platform management</p><h2>All challenges</h2><p>Search, edit, or archive duplicate and outdated challenges. Archived challenges leave active portals while proposal history is retained.</p></div>
+            <div class="filter-bar portal-filters"><input id="problemSearch" type="search" placeholder="Search challenges" aria-label="Search challenges"><select id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option><option value="Draft">Draft</option><option value="Open">Open</option><option value="UnderReview">Under review</option><option value="Solved">Solved</option><option value="Archived">Archived</option></select></div>
+            <div id="problems" class="challenge-grid" aria-live="polite"></div><p id="problemEmpty" class="empty-state" hidden>No challenges match those filters.</p>
+        </section>
+        <section class="workspace-section portal-workspace">
+            <div class="workspace-header"><div><p class="kicker">Administration</p><h2>Publish a challenge</h2></div></div>
+            <form id="problemForm" class="work-card">
+                <label>Challenge title<input name="title" required></label><label>Describe the problem<textarea name="description" required></textarea></label>
+                <div class="field-row"><label>Organization<select name="organizationId" id="problemOrganization" required></select></label><label>Category<select name="categoryId" id="problemCategory" required></select></label></div>
+                <div class="field-row"><label>Submission deadline<input name="deadline" type="date" required></label><label>Bounty amount (KES)<input name="bountyAmount" type="number" min="0" step="1" value="0" required></label></div><label class="employment-option"><input name="offersEmployment" type="checkbox"> Employment opportunity included</label><fieldset><legend>Useful skills</legend><div id="skillChecks" class="skill-list"></div></fieldset>
+                <button class="button button-primary" type="submit">Publish challenge</button>
+            </form>
+        </section>
+            </main>
+            <footer class="site-footer"><span>Barika Bounty · Admin Portal</span><span id="portalMessage" role="status"></span></footer>
+        </div>
+    </div>
+    <script src="js/portal.js?v=5"></script>
+</body>
+</html>

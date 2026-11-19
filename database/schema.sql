@@ -1,0 +1,85 @@
+CREATE TABLE Organizations (
+    Id INT IDENTITY PRIMARY KEY,
+    Name NVARCHAR(160) NOT NULL,
+    Sector NVARCHAR(120) NOT NULL,
+    Location NVARCHAR(120) NOT NULL
+);
+
+CREATE TABLE Users (
+    Id INT IDENTITY PRIMARY KEY,
+    FullName NVARCHAR(160) NOT NULL,
+    Email NVARCHAR(220) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(500) NOT NULL,
+    Role NVARCHAR(40) NOT NULL,
+    OrganizationId INT NULL REFERENCES Organizations(Id)
+);
+
+CREATE TABLE Categories (
+    Id INT IDENTITY PRIMARY KEY,
+    Name NVARCHAR(120) NOT NULL,
+    Description NVARCHAR(500) NOT NULL
+);
+
+CREATE TABLE Skills (
+    Id INT IDENTITY PRIMARY KEY,
+    Name NVARCHAR(120) NOT NULL UNIQUE
+);
+
+CREATE TABLE Problems (
+    Id INT IDENTITY PRIMARY KEY,
+    Title NVARCHAR(220) NOT NULL,
+    Description NVARCHAR(MAX) NOT NULL,
+    OrganizationId INT NOT NULL REFERENCES Organizations(Id),
+    CategoryId INT NOT NULL REFERENCES Categories(Id),
+    Status NVARCHAR(40) NOT NULL,
+    Deadline DATETIME2 NOT NULL
+);
+
+CREATE TABLE ProblemSkills (
+    ProblemId INT NOT NULL REFERENCES Problems(Id),
+    SkillId INT NOT NULL REFERENCES Skills(Id),
+    PRIMARY KEY (ProblemId, SkillId)
+);
+
+CREATE TABLE Rewards (
+    Id INT IDENTITY PRIMARY KEY,
+    Title NVARCHAR(160) NOT NULL,
+    Amount DECIMAL(18, 2) NOT NULL,
+    Currency NVARCHAR(12) NOT NULL,
+    ProblemId INT NOT NULL REFERENCES Problems(Id)
+);
+
+CREATE TABLE Proposals (
+    Id INT IDENTITY PRIMARY KEY,
+    ProblemId INT NOT NULL REFERENCES Problems(Id),
+    UserId INT NOT NULL REFERENCES Users(Id),
+    Title NVARCHAR(220) NOT NULL,
+    Summary NVARCHAR(MAX) NOT NULL,
+    Status NVARCHAR(40) NOT NULL,
+    SubmittedAt DATETIME2 NOT NULL
+);
+
+CREATE TABLE Solutions (
+    Id INT IDENTITY PRIMARY KEY,
+    ProposalId INT NOT NULL REFERENCES Proposals(Id),
+    ImplementationPlan NVARCHAR(MAX) NOT NULL,
+    EvidenceUrl NVARCHAR(600) NOT NULL,
+    SubmittedAt DATETIME2 NOT NULL
+);
+
+CREATE TABLE Evaluations (
+    Id INT IDENTITY PRIMARY KEY,
+    SolutionId INT NOT NULL REFERENCES Solutions(Id),
+    EvaluatorUserId INT NOT NULL REFERENCES Users(Id),
+    Score INT NOT NULL CHECK (Score BETWEEN 0 AND 100),
+    Comments NVARCHAR(MAX) NOT NULL,
+    EvaluatedAt DATETIME2 NOT NULL
+);
+
+CREATE TABLE ImplementationRecords (
+    Id INT IDENTITY PRIMARY KEY,
+    SolutionId INT NOT NULL REFERENCES Solutions(Id),
+    Milestone NVARCHAR(220) NOT NULL,
+    Status NVARCHAR(80) NOT NULL,
+    UpdatedAt DATETIME2 NOT NULL
+);

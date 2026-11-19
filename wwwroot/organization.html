@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Portal | Barika Bounty</title>
+    <link rel="stylesheet" href="css/styles.css?v=10">
+</head>
+<body data-portal="OrganizationOwner">
+    <header class="site-header">
+        <a class="brand" href="/organization.html"><span class="brand-mark" aria-hidden="true">B</span><span>Barika Bounty <small>Organization Portal</small></span></a>
+        <nav class="main-nav" aria-label="Organization navigation"><a href="#overview">Overview</a><a href="#directorySection">Members</a><a href="#challenges">Challenges</a><a href="#categorySuggestions">Suggest a category</a><a href="#proposals">Proposals</a></nav>
+        <div class="account-actions"><span id="portalUser"></span><button id="signOut" class="button button-secondary" type="button">Sign out</button></div>
+    </header>
+    <main class="portal-main">
+        <section id="overview" class="portal-welcome"><p class="kicker">Organization workspace</p><h1 id="portalHeading">Your organization</h1><p>Manage your organization’s challenges and review incoming proposals.</p></section>
+        <section id="metricsSection" class="stats-strip portal-stats" aria-label="Organization totals"><div id="metrics" class="metrics"></div></section>
+        <section id="directorySection" class="section directory-section">
+            <div class="section-intro"><p class="kicker">Your organization</p><h2>Organization members</h2><p>Only members associated with your organization are shown here.</p></div>
+            <div class="directory-grid"><article class="directory-card"><h3>Members</h3><div class="table-scroll"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead><tbody id="directoryUsers"></tbody></table></div></article><article class="directory-card"><h3>Organization</h3><div class="table-scroll"><table><thead><tr><th>Name</th><th>Sector</th><th>Location</th></tr></thead><tbody id="directoryOrganizations"></tbody></table></div></article></div>
+        </section>
+        <section id="challenges" class="section section-challenges portal-section">
+            <div class="section-intro"><p class="kicker">Your organization</p><h2>Your challenges</h2><p>Manage challenges published by your organization.</p></div>
+            <div class="filter-bar portal-filters"><input id="problemSearch" type="search" placeholder="Search your challenges" aria-label="Search your challenges"></div>
+            <div id="problems" class="challenge-grid" aria-live="polite"></div><p id="problemEmpty" class="empty-state" hidden>No challenges match those filters.</p>
+        </section>
+        <section class="workspace-section portal-workspace">
+            <div class="workspace-header"><div><p class="kicker">Create an opportunity</p><h2>Publish a challenge</h2></div></div>
+            <form id="problemForm" class="work-card">
+                <label>Challenge title<input name="title" required></label><label>Describe the problem<textarea name="description" required></textarea></label>
+                <div class="field-row"><label>Organization<select name="organizationId" id="problemOrganization" required></select></label><label>Category<select name="categoryId" id="problemCategory" required></select></label></div>
+                <div class="field-row"><label>Submission deadline<input name="deadline" type="date" required></label><label>Bounty amount (KES)<input name="bountyAmount" type="number" min="0" step="1" value="0" required></label></div><label class="employment-option"><input name="offersEmployment" type="checkbox"> Employment opportunity included</label><fieldset><legend>Useful skills</legend><div id="skillChecks" class="skill-list"></div></fieldset>
+                <button class="button button-primary" type="submit">Publish challenge</button>
+            </form>
+        </section>
+        <section id="categorySuggestions" class="workspace-section portal-workspace">
+            <div class="workspace-header"><div><p class="kicker">Help Barika grow</p><h2>Suggest a category</h2></div></div>
+            <form id="categorySuggestionForm" class="work-card">
+                <p>Suggest a new area of innovation for admin review. Approved categories become available to everyone.</p>
+                <label>Category name<input name="name" minlength="3" maxlength="80" required></label>
+                <label>What belongs in this category?<textarea name="description" minlength="5" maxlength="300" required></textarea></label>
+                <button class="button button-primary" type="submit">Submit suggestion</button>
+            </form>
+            <div id="categorySuggestionsList" class="category-suggestion-list" aria-live="polite"></div>
+        </section>
+        <section id="proposals" class="section proposals-section">
+            <div class="section-intro"><p class="kicker">Incoming ideas</p><h2>Proposals for your challenges</h2><p>Review proposals submitted to your organization’s challenges.</p></div>
+            <div class="filter-bar portal-filters"><input id="proposalSearch" type="search" placeholder="Search proposals" aria-label="Search proposals"><select id="proposalStatus" aria-label="Filter proposals"><option value="">All statuses</option><option value="Submitted">Submitted</option><option value="Shortlisted">Shortlisted</option><option value="Rejected">Rejected</option><option value="Approved">Approved</option><option value="Implemented">Implemented</option></select></div>
+            <div id="proposalsList" class="proposal-list" aria-live="polite"></div>
+        </section>
+    </main>
+    <footer class="site-footer"><span>Barika Bounty · Organization Portal</span><span id="portalMessage" role="status"></span></footer>
+    <script src="js/portal.js?v=5"></script>
+</body>
+</html>

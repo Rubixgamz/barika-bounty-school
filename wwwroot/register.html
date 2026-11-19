@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a Barika Bounty user or organization account.">
+    <title>Create an account | Barika Bounty</title>
+    <link rel="stylesheet" href="css/styles.css?v=10">
+</head>
+<body class="auth-page">
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Barika Bounty home"><span class="brand-mark" aria-hidden="true">B</span><span>Barika Bounty</span></a>
+        <a class="button button-secondary" href="/">Back to challenges</a>
+    </header>
+    <main class="auth-main">
+        <section class="auth-panel">
+            <p class="kicker">Join the community</p>
+            <h1>Create your account.</h1>
+            <p class="auth-description">Register as an individual to submit ideas, or as an organization to publish challenges.</p>
+            <form id="registerForm" class="auth-form">
+                <fieldset class="account-type">
+                    <legend>Account type</legend>
+                    <label><input type="radio" name="role" value="Innovator" checked> Individual</label>
+                    <label><input type="radio" name="role" value="OrganizationOwner"> Organization</label>
+                </fieldset>
+                <label>Full name<input name="fullName" autocomplete="name" required></label>
+                <fieldset id="organizationFields" class="organization-fields" hidden>
+                    <legend>Organization details</legend>
+                    <label>Organization name<input name="organizationName" autocomplete="organization"></label>
+                    <div class="field-row">
+                        <label>Sector<input name="sector"></label>
+                        <label>Location<input name="location"></label>
+                    </div>
+                </fieldset>
+                <label>Email<input name="email" type="email" autocomplete="email" required></label>
+                <label>Password<input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+                <p id="registerMessage" class="form-message" role="status"></p>
+                <button class="button button-primary" type="submit">Create account</button>
+            </form>
+            <div class="social-auth">
+                <p class="auth-divider">Or register with</p>
+                <div class="social-actions">
+                    <button class="button button-secondary" type="button" data-provider="google">Google</button>
+                    <button class="button button-secondary" type="button" data-provider="linkedin">LinkedIn</button>
+                    <button class="button button-secondary" type="button" data-provider="github">GitHub</button>
+                </div>
+                <p class="provider-note" data-provider-note>Social sign-up is unavailable until configured by the site administrator.</p>
+            </div>
+            <p class="auth-switch">Already registered? <a href="/?login=1" data-open-login>Sign in</a></p>
+        </section>
+    </main>
+    <footer class="site-footer"><span>Barika Bounty</span><span>Challenge to implementation, together.</span></footer>
+    <script src="js/register.js?v=3"></script>
+</body>
+</html>

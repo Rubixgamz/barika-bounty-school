@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Portal | Barika Bounty</title>
+    <link rel="stylesheet" href="css/styles.css?v=10">
+</head>
+<body data-portal="Member">
+    <header class="site-header">
+        <a class="brand" href="/user.html"><span class="brand-mark" aria-hidden="true">B</span><span>Barika Bounty <small>User Portal</small></span></a>
+        <nav class="main-nav" aria-label="User navigation"><a href="#challenges">Open challenges</a><a id="userWorkLink" href="#workspace">Submit an idea</a><a id="userProposalsLink" href="#proposals">My proposals</a><a href="#categorySuggestions">Suggest a category</a></nav>
+        <div class="account-actions"><span id="portalUser"></span><button id="signOut" class="button button-secondary" type="button">Sign out</button></div>
+    </header>
+    <main class="portal-main">
+        <section class="portal-welcome"><p id="userKicker" class="kicker">User workspace</p><h1 id="userHeading">Your ideas, moving forward.</h1><p id="userDescription">Find an open challenge, submit a proposal, and track your own submissions.</p></section>
+        <section id="challenges" class="section section-challenges portal-section">
+            <div class="section-intro"><p class="kicker">Open opportunities</p><h2>Challenges to solve</h2><p>Browse active challenges available to members.</p></div>
+            <div class="filter-bar portal-filters"><input id="problemSearch" type="search" placeholder="Search challenges" aria-label="Search challenges"><select id="categoryFilter" aria-label="Filter by category"></select></div>
+            <div id="problems" class="challenge-grid" aria-live="polite"></div><p id="problemEmpty" class="empty-state" hidden>No open challenges match those filters.</p>
+        </section>
+        <section id="workspace" class="workspace-section portal-workspace">
+            <div class="workspace-header"><div><p class="kicker">Share your approach</p><h2>Submit a proposal</h2></div></div>
+            <form id="proposalForm" class="work-card work-card-accent">
+                <label>Choose a challenge<select name="problemId" id="proposalProblem" required></select></label>
+                <p id="proposalCategoryHint" class="proposal-context" role="status">Choose a challenge to see its work area.</p>
+                <label>Proposal title<input name="title" placeholder="Name your idea" required></label>
+                <label>Idea summary<textarea name="summary" placeholder="What will you make, and how will it solve the problem?" required></textarea></label>
+                <button class="button button-primary" type="submit">Submit proposal</button>
+            </form>
+        </section>
+        <section id="categorySuggestions" class="workspace-section portal-workspace">
+            <div class="workspace-header"><div><p class="kicker">Help Barika grow</p><h2>Suggest a category</h2></div></div>
+            <form id="categorySuggestionForm" class="work-card">
+                <p>Suggest a new area of innovation for admin review. Approved categories become available to everyone.</p>
+                <label>Category name<input name="name" minlength="3" maxlength="80" required></label>
+                <label>What belongs in this category?<textarea name="description" minlength="5" maxlength="300" required></textarea></label>
+                <button class="button button-primary" type="submit">Submit suggestion</button>
+            </form>
+            <div id="categorySuggestionsList" class="category-suggestion-list" aria-live="polite"></div>
+        </section>
+        <section id="proposals" class="section proposals-section">
+            <div class="section-intro"><p class="kicker">Your submissions</p><h2 id="userProposalHeading">My proposals</h2><p id="userProposalDescription">Only your proposals and their current stages are shown here.</p></div>
+            <div id="proposalsList" class="proposal-list" aria-live="polite"></div>
+        </section>
+    </main>
+    <footer class="site-footer"><span>Barika Bounty · User Portal</span><span id="portalMessage" role="status"></span></footer>
+    <script src="js/portal.js?v=5"></script>
+</body>
+</html>
